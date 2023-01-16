@@ -1,6 +1,7 @@
 FROM python:3-alpine
 
 ENV READTHEDOCS=True
+ENV CAMERA=pi
 
 RUN set -o pipefail -eux; \
     apk add git; \
