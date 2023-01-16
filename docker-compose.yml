@@ -1,0 +1,19 @@
+version: "3.5"
+services:
+  # https://www.losant.com/blog/how-to-access-the-raspberry-pi-camera-in-docker
+  # https://hrushi-deshmukh.medium.com/ros%C2%B9-on-raspberry-pi-with-docker-picamera-and-custom-dockerfile-facc4140c310
+  peephole:
+    container_name: peephole
+    build:
+      context: ./peephole
+      dockerfile: Dockerfile
+    restart: 'no'
+    ports:
+      - "5000:5000"
+    devices:
+      - "/dev/video0:/dev/video0"
+    environment:
+      - LD_LIBRARY_PATH=/opt/vc/lib
+    volumes:
+      - /opt/vc:/opt/vc
+      - ./peephole/data:/data
